@@ -18,7 +18,7 @@
             </div>
             <div class="footer-menu">
                 <ul>
-                    <li><a href="/privacy/">Privacy Notice</a></li>
+                    <li><a href="/privacy-policy/">Privacy Notice</a></li>
                     <li><a href="/cookie-notice/">Cookie Notice</a></li>
                     <li><a href="/cookie-preference/">Cookie Preference</a></li>
                     <li><a href="/work-with-us/">Work With Us</a></li>

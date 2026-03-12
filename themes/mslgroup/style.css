@@ -1318,6 +1318,25 @@ textarea {
 	font-family: var(--font-headline);
 }
 
+@media (max-width: 900px) {
+	#footer .container {
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+		text-align: center;
+	}
+
+	.footer-menu ul {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.footer-social ul {
+		justify-content: center;
+	}
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -1339,11 +1358,13 @@ body.legal-notice-page .site-header {
 	color: var(--color-primary);
 	--header-fg: var(--color-primary);
 	--header-bg: var(--color-white);
+	font-family: var(--font-body);
 }
 
 body.legal-notice-page .site-main {
 	padding-top: 7rem;
 }
+
 
 body.is-scrolled .site-header {
 	opacity: 1;
@@ -1393,6 +1414,7 @@ body.is-scrolled .site-header {
 	background-color: var(--color-primary);
 	position: relative;
 	padding-bottom: 200px;
+	padding-top:100px;
 
 	.checkmark_social {
 		display: inline-block;
@@ -1424,7 +1446,7 @@ body.is-scrolled .site-header {
 		text-transform: uppercase;
 		text-wrap: balance;
 		color: var(--color-secondary);
-		margin: 4rem auto 3rem;
+		margin: 0 auto 3rem;
 		max-width: 1030px;
         width: 94%;
 	}

@@ -7,7 +7,11 @@
 
 get_header();
 ?>
-
+<style>
+	.otnotice-sections p {
+		font-family: sans-serif !important;
+	}
+</style>
 	<main id="primary" class="site-main">
 		<div class="container">
 			<div class="content-wrap">

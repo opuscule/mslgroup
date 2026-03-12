@@ -1,0 +1,24 @@
+.DS_Store
+Thumbs.db
+
+# Logs and local debug files.
+*.log
+debug.log
+
+# WordPress core update and backup leftovers.
+upgrade/
+upgrade-temp-backup/
+
+# Common cache and backup directories created by plugins or local tooling.
+cache/
+wflogs/
+ai1wm-backups/
+backups/
+
+# Dependency directories that should be rebuilt locally if needed.
+node_modules/
+
+# Keep uploads tracked by default, but ignore common generated cache areas.
+uploads/cache/
+uploads/wc-logs/
+uploads/wpforms/cache/

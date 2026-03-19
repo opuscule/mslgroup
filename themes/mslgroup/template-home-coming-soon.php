@@ -6,6 +6,36 @@
  */
 
 get_header();
+
+$instagram_link_text = 'View Instagram';
+$instagram_url       = '#';
+$instagram_image_url = '';
+$instagram_image_alt = 'Instagram preview';
+
+$linkedin_link_text = 'View LinkedIn';
+$linkedin_url       = '#';
+$linkedin_image_url = '';
+$linkedin_image_alt = 'LinkedIn preview';
+
+if ( function_exists( 'get_field' ) ) {
+    $instagram_link_text = get_field( 'instagram_link_text', 'option' ) ?: $instagram_link_text;
+    $instagram_url       = get_field( 'instagram_url', 'option' ) ?: $instagram_url;
+    $instagram_image     = get_field( 'instagram_image', 'option' );
+
+    if ( is_array( $instagram_image ) ) {
+        $instagram_image_url = $instagram_image['url'] ?? '';
+        $instagram_image_alt = $instagram_image['alt'] ?? $instagram_image_alt;
+    }
+
+    $linkedin_link_text = get_field( 'linkedin_link_text', 'option' ) ?: $linkedin_link_text;
+    $linkedin_url       = get_field( 'linkedin_url', 'option' ) ?: $linkedin_url;
+    $linkedin_image     = get_field( 'linkedin_image', 'option' );
+
+    if ( is_array( $linkedin_image ) ) {
+        $linkedin_image_url = $linkedin_image['url'] ?? '';
+        $linkedin_image_alt = $linkedin_image['alt'] ?? $linkedin_image_alt;
+    }
+}
 ?>
 
 	<main id="primary" class="site-main">
@@ -378,60 +408,26 @@ get_header();
                 });
             </script>
 
-            <!-- Instagram Feed -->
+            
             <div class="social-embeds">
-                <a class="social-embed instagram-feed" id="instagram-feed" href="#" target="_blank" rel="noopener noreferrer" aria-label="View our latest Instagram post">
+                <!-- Instagram -->
+                <a class="social-embed instagram-feed" id="instagram-feed" href="<?php echo esc_url( $instagram_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $instagram_link_text ); ?>">
                     <div class="social-embed__content">
-                        <div class="instagram-feed__link" id="instagram-post"></div>
+                        <div class="instagram-feed__link" id="instagram-post"<?php echo $instagram_image_url ? ' style="background-image: url(' . esc_url( $instagram_image_url ) . ');"' : ''; ?> aria-label="<?php echo esc_attr( $instagram_image_alt ); ?>"></div>
                     </div>
                     <div class="embed-overlay">
-                        <span class="embed-overlay__text">View<br>Instagram</span>
+                        <span class="embed-overlay__text"><?php echo esc_html( $instagram_link_text ); ?></span>
                     </div>
                 </a>
 
-            <script>
-                (function() {
-                    const BEHOLD_FEED_URL = 'https://feeds.behold.so/zFgp2Jbbk23Ovf1ZUOhq';
-                    
-                    fetch(BEHOLD_FEED_URL)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (!data.posts || data.posts.length === 0) return;
-                            
-                            const post = data.posts[0]; // First/most recent post
-                            const feedLink = document.getElementById('instagram-feed');
-                            const postContainer = document.getElementById('instagram-post');
-                            
-                            if (!feedLink || !postContainer) return;
-                            
-                            feedLink.href = post.permalink;
-                            
-                            const mediaUrl = post.sizes?.medium?.mediaUrl || post.mediaUrl;
-                            
-                            if (post.mediaType === 'VIDEO') {
-                                const video = document.createElement('video');
-                                video.src = mediaUrl;
-                                video.autoplay = true;
-                                video.loop = true;
-                                video.muted = true;
-                                video.playsInline = true;
-                                postContainer.appendChild(video);
-                            } else {
-                                postContainer.style.backgroundImage = `url('${mediaUrl}')`;
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching Instagram feed:', error);
-                        });
-                })();
-            </script>
-
-                <a class="social-embed linkedin-embed" href="https://www.linkedin.com/posts/mslglobal_influenceimpact-msleading-activity-7432189858846203904-1X2-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAJOf-YBDUxcLB7GYKeNDqXstOvQ6skCvSE" target="_blank" rel="noopener noreferrer" title="View our LinkedIn post">
+       
+                <!-- LinkedIn -->
+                <a class="social-embed linkedin-embed" href="<?php echo esc_url( $linkedin_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $linkedin_link_text ); ?>">
                     <div class="social-embed__content">
-                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7432189856392564736?collapsed=1" height="470" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+                        <div class="social-embed__image"<?php echo $linkedin_image_url ? ' style="background-image: url(' . esc_url( $linkedin_image_url ) . ');"' : ''; ?> aria-label="<?php echo esc_attr( $linkedin_image_alt ); ?>"></div>
                     </div>
                     <div class="embed-overlay">
-                        <span class="embed-overlay__text">View<br>LinkedIn</span>
+                        <span class="embed-overlay__text"><?php echo esc_html( $linkedin_link_text ); ?></span>
                     </div>
                 </a>
             </div>
